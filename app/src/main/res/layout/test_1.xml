@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="170dp"
+        android:layout_height="161dp"
+        android:contentDescription="@string/icon_message"
+        />
+
+    <EditText
+        android:id="@+id/editTextPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/user_no"
+        android:inputType="phone"
+        android:minHeight="48dp"
+        tools:ignore="TextSizeCheck"
+        android:autofillHints="" />
+
+
+    <EditText
+        android:id="@+id/editTextTextPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="46dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/password_message"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        tools:ignore="TextSizeCheck" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="100dp"
+        android:layout_height="49dp"
+        android:layout_marginBottom="132dp"
+        android:hint="@string/button_message"
+        tools:ignore="TextSizeCheck" />
+
+    <TextView
+        android:id="@+id/textView0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="68dp"
+        android:hint="@string/app_version"
+        tools:ignore="TextSizeCheck" />
+
+</LinearLayout>
