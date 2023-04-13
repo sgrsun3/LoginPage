@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/LoginPage">
 
-        <!-- 设置应用主题 -->
+<!--         设置应用主题 -->
         <activity android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
