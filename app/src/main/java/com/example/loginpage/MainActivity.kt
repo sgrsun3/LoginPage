@@ -13,14 +13,15 @@ class MainActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.test_1)
+        setContentView(R.layout.loginpage_layout)
 
         retrofitUnit = RetrofitUnit
-
+        //定义组件
         val mobileEditText = findViewById<EditText>(R.id.editTextPhone)
         val passwordEditText = findViewById<EditText>(R.id.editTextTextPassword)
         val loginButton = findViewById<Button>(R.id.button)
 
+        //登陆按钮的监听器
         loginButton.setOnClickListener {
             val mobile = mobileEditText.text.toString()
             val password = passwordEditText.text.toString()
@@ -28,12 +29,12 @@ class MainActivity : Activity() {
             if (mobile.isNotEmpty() && password.isNotEmpty()) {
 
                 val loginRequest = LoginRequest(mobile, password)
-
+                Log.i("TEST","phone :$mobile")
                 retrofitUnit.login(loginRequest) { response ->
                     if (response.isSuccessful && response.body() != null && response.body()?.data != null) {
+                        //获取LoginResponse里的数据
                         val auth = response.body()?.data?.auth
                         val accessToken = auth?.accessToken
-
                         if (accessToken != null) {
                             // 登录成功
                             Toast.makeText(this, "$mobile 登录成功", Toast.LENGTH_SHORT).show()
