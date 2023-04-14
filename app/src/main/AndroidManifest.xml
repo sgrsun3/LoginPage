@@ -15,7 +15,7 @@
         android:theme="@style/LoginPage">
 
 <!--         设置应用主题 -->
-        <activity android:name=".MainActivity"
+        <activity android:name=".LoginPageActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,6 +35,8 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
+        <!--声明用户信息页-->
+        <activity android:name=".UserProfileActivity"></activity>
 
     </application>
 

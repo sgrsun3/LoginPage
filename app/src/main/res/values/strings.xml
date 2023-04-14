@@ -5,4 +5,5 @@
     <string name="button_message">登陆</string>
     <string name="icon_message">图标</string>
     <string name="password_message">请输入密码：</string>
+    <string name="user_profile">该处应为用户信息</string>
 </resources>

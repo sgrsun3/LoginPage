@@ -4,21 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".LoginPageActivity"
     tools:ignore="MissingClass">
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="128dp"
-        android:layout_height="132dp"
-        android:contentDescription="TODO"
-        android:src="@mipmap/mycadillac_logo"
-        app:layout_constraintBottom_toTopOf="@+id/guideline1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline0"
-        app:layout_constraintVertical_bias="0.0" />
+            android:id="@+id/imageView"
+            android:layout_width="128dp"
+            android:layout_height="132dp"
+            android:contentDescription="@android:string/unknownName"
+            android:src="@mipmap/mycadillac_logo"
+            app:layout_constraintBottom_toTopOf="@+id/guideline1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline0"
+            app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView0"
@@ -76,6 +76,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline3"
+            android:onClick="goToUserProfile"
         tools:ignore="TextSizeCheck" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -86,11 +87,11 @@
         app:layout_constraintGuide_percent="0.1" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.3" />
+            android:id="@+id/guideline1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.3" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"

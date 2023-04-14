@@ -10,16 +10,13 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 
 object RetrofitUnit {
-    private val url = "https://app.sgmlink.com:443"
-
+    private const val url = "https://app.sgmlink.com:443"
     private val okHttpClient = OkHttpClient()
-
     private val retrofit: Retrofit = Retrofit.Builder()
         .baseUrl(url)
         .client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
-
     private val apiService: ApiService = retrofit.create(ApiService::class.java)
 
     fun login(loginRequest: LoginRequest, callback: (Response<LoginResponse>) -> Unit) {
