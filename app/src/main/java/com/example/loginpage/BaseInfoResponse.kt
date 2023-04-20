@@ -1,6 +1,6 @@
 package com.example.loginpage
 
-data class UserProfileResponse(
+data class BaseInfoResponse(
     val resultCode: String,
     val message: String,
     val data: Data

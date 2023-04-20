@@ -1,7 +1,6 @@
 package com.example.loginpage
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -11,13 +10,13 @@ import android.widget.Toast
 
 class LoginPageActivity : Activity() {
 
-    private lateinit var retrofitUnit: RetrofitUnit
+    private lateinit var retrofitUnit: RetrofitUtil
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.loginpage_layout)
 
-        retrofitUnit = RetrofitUnit
+        retrofitUnit = RetrofitUtil
 
         //定义组件
         val mobileEditText = findViewById<EditText>(R.id.editTextPhone)
@@ -39,9 +38,11 @@ class LoginPageActivity : Activity() {
                         val auth = response.body()?.data?.auth
                         val accessToken = auth?.accessToken
                         val permToken = auth?.refreshToken
+                        val idpUserId = auth?.idpUserId
 
-                        val accesstokenPref = getSharedPreferences("accessToken_pref", Context.MODE_PRIVATE)
-                        val permtokenPref = getSharedPreferences("permToken_pref", Context.MODE_PRIVATE)
+                        val accesstokenPref = getSharedPreferences("accessToken_pref", MODE_PRIVATE)
+                        val permtokenPref = getSharedPreferences("permToken_pref", MODE_PRIVATE)
+                        val idpUserIdPref = getSharedPreferences("idpUserId_pref", MODE_PRIVATE)
 
                         if (accessToken != null) {
                             // 登录成功
@@ -49,22 +50,22 @@ class LoginPageActivity : Activity() {
 
                             //SharedPreference存储accessToken和permToken
                             with(accesstokenPref.edit()) {
-                                putString("accessToken_pref", accessToken)
+                                putString("accessToken", accessToken)
                                 apply()
                             }
-
                             with(permtokenPref.edit()) {
-                                putString("permToken_pref", permToken)
+                                putString("permToken", permToken)
+                                apply()
+                            }
+                            with(idpUserIdPref.edit()){
+                                putString("idpUserId", idpUserId)
                                 apply()
                             }
                             Toast.makeText(this, "Access & Perm Token 已经储存", Toast.LENGTH_SHORT).show()
-                            // 读取SharedPreferences中的accessToken
-                            //val accessToken1 = sharedPreferences.getString("accessToken_pref", "")
 
                             //跳转到用户信息页
                             val intent = Intent(this, UserProfileActivity::class.java)
                             startActivity(intent)
-
 
                         } else {
                             // 登录失败
@@ -80,8 +81,6 @@ class LoginPageActivity : Activity() {
                 Toast.makeText(this, "手机号码或密码不能为空", Toast.LENGTH_SHORT).show()
             }
         }
-
-
     }
 
 
