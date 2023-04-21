@@ -39,4 +39,5 @@ data class BaseInfoResponse(
         val nextExamineTime: String,
         val defaultCity: String
     )
+
 }

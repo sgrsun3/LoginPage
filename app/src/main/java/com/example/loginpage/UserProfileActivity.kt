@@ -11,6 +11,7 @@ class UserProfileActivity: Activity() {
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.userprofile_layout)
 
@@ -21,24 +22,35 @@ class UserProfileActivity: Activity() {
 
         // 调用getUserProfile()方法获取用户信息
         retrofitUnit.getUserProfile(this) { response ->
+
             if (response.isSuccessful) {
+
                 val data = response.body()?.data
                 val profileInfo = data?.profileInfo
                 val garage = data?.garage
                 if (profileInfo != null && garage != null) {
+
                     val name = profileInfo.name
                     val gender = profileInfo.gender
                     val birthday = profileInfo.birthday
                     val phone = profileInfo.phone
                     //val nickname = garage.nickName 昵称：$nickname,
-
                     // 将获取到的用户信息展示在TextView中
-                    userProfileTextView.text = "欢迎：$name，你的性别是：$gender，生日是：$birthday，手机号是：$phone"
+                    userProfileTextView.text = "欢迎登陆：$name，\n你的性别是：$gender，\n生日是：$birthday，\n手机号是：$phone"
+
                 }
             } else {
+                if (response.code() == 401){
+
+                    userProfileTextView.text = "Error Code 401, 获取用户信息失败"
+                }
+
                 userProfileTextView.text = "获取用户信息失败"
             }
+
         }
+
     }
+
 }
 

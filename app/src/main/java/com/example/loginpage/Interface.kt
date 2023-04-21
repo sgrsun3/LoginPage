@@ -6,6 +6,7 @@ import retrofit2.http.Header
 import retrofit2.http.POST
 
 interface ApiService {
+
     // 登录接口
     @POST("/service/mycadillacv3/rest/api/public/auth/v3/authorize")
     fun login(@Body loginRequest: LoginRequest): Call<LoginResponse>
@@ -19,4 +20,5 @@ interface ApiService {
         @Header("idpUserId") idpUserId: String? = null,
         @Header("buId") buId: String? = null,
     ): Call<BaseInfoResponse>
+
 }

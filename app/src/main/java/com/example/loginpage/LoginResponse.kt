@@ -15,4 +15,5 @@ data class LoginResponse(
         val refreshToken: String?,
         val newUser: String?,
         val processId: String?)
+
 }

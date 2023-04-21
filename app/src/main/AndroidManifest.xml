@@ -36,7 +36,7 @@
         </provider>
 
         <!--声明用户信息页-->
-        <activity android:name=".UserProfileActivity"></activity>
+        <activity android:name=".UserProfileActivity"/>
 
     </application>
 
