@@ -24,10 +24,10 @@ object RetrofitUtil {
     fun login(loginRequest: LoginRequest, callback: (Response<LoginResponse>) -> Unit) {
 
         val call = apiService.login(loginRequest)
+
         call.enqueue(object:Callback<LoginResponse> {
 
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
-
                 callback(response)
 
             }
@@ -45,12 +45,10 @@ object RetrofitUtil {
     fun getUserProfile(context: Context, callback: (Response<BaseInfoResponse>) -> Unit) {
 
         val sharedPreferencesUserProfile = context.getSharedPreferences("user_profile", Context.MODE_PRIVATE)
-
         // 读取SharedPreferences中的accessToken
         val accessToken = sharedPreferencesUserProfile.getString("access_token", "")
         // 读取SharedPreferences中的idpUserId
         val idpUserId = sharedPreferencesUserProfile.getString("idpuser_id", "")
-
         // 发送API请求
         val apiService = retrofit.create(ApiService::class.java)
         val call = apiService.getUserProfile(
@@ -60,14 +58,40 @@ object RetrofitUtil {
         )
 
         call.enqueue(object : Callback<BaseInfoResponse> {
-            override fun onResponse(call: Call<BaseInfoResponse>, response: Response<BaseInfoResponse>) {
-                Log.e("getUserProfile","baseinfo : ${response.toString()}" )
 
+            override fun onResponse(call: Call<BaseInfoResponse>, response: Response<BaseInfoResponse>) {
+
+                Log.e("getUserProfile","baseinfo : ${response.toString()}" )
                 callback(response)
+
             }
 
             override fun onFailure(call: Call<BaseInfoResponse>, t: Throwable) {
+
                 Log.e("getUserProfile", "getUserProfile() failed", t)
+
+            }
+
+        })
+
+    }
+
+    fun getRefreshToken(refreshTokenRequest:RefreshTokenRequest, callback: (Response<RefreshTokenResponse>)-> Unit){
+
+        val call = apiService.refresh(refreshTokenRequest)
+
+        call.enqueue(object: Callback<RefreshTokenResponse> {
+
+            override fun onResponse(call: Call<RefreshTokenResponse>, response: Response<RefreshTokenResponse>) {
+
+                callback(response)
+
+            }
+
+            override fun onFailure(call: Call<RefreshTokenResponse>, t: Throwable) {
+
+                Log.e("RetrofitUtil", "refresh() failed", t)
+
             }
 
         })

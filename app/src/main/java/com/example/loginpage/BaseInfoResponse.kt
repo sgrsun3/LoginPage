@@ -5,6 +5,7 @@ data class BaseInfoResponse(
     val message: String,
     val data: Data
 ){
+
     data class Data(
         val profileInfo: ProfileInfo,
         val garage: List<Garage>

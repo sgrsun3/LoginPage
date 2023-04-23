@@ -21,4 +21,8 @@ interface ApiService {
         @Header("buId") buId: String? = null,
     ): Call<BaseInfoResponse>
 
+    //刷新Access Token接口
+    @POST("/service/mycadillacv3/rest/api/public/auth/v3/refreshToken")
+    fun refresh(@Body refreshTokenRequest: RefreshTokenRequest):Call<RefreshTokenResponse>
+
 }

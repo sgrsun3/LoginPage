@@ -1,6 +1,6 @@
 package com.example.loginpage
 
-data class AccessTokenResponse(
+data class RefreshTokenResponse(
     val resultCode: String,
     val message: String,
     val data: AccessTokenData

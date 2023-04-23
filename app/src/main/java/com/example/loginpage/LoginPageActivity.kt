@@ -50,6 +50,7 @@ class LoginPageActivity : Activity() {
                 retrofitUnit.login(loginRequest) { response ->
 
                     if (response.isSuccessful && response.body() != null && response.body()?.data != null) {
+
                         //获取LoginResponse里的数据
                         val auth = response.body()?.data?.auth
                         val accessToken = auth?.accessToken
@@ -57,7 +58,6 @@ class LoginPageActivity : Activity() {
                         val idpUserId = auth?.idpUserId
 
                         if (accessToken != null) {
-
                             // 登录成功
                             Toast.makeText(this, "$mobile 登录成功", Toast.LENGTH_SHORT).show()
 
@@ -78,13 +78,17 @@ class LoginPageActivity : Activity() {
                         } else {
                             // 登录失败
                             Toast.makeText(this, "$mobile 登录失败", Toast.LENGTH_SHORT).show()
+
                         }
                     } else {
                         // 请求失败
                         Toast.makeText(this, "请求失败", Toast.LENGTH_SHORT).show()
                         Log.e("LoginPageActivity", "login() failed: ${response.errorBody()}")
+
                     }
+
                 }
+
             } else {
                 Toast.makeText(this, "手机号码或密码不能为空", Toast.LENGTH_SHORT).show()
             }
