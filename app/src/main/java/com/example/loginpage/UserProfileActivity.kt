@@ -59,8 +59,8 @@ class UserProfileActivity: Activity() {
 
                         if (response.isSuccessful) {
 
-                            val accessToken = response.body().data.accessToken
-                            val editor = sharedPreferencesUserProfile.edit();
+                            val accessToken = response.body()?.data?.accessToken
+                            val editor = sharedPreferencesUserProfile.edit()
                             editor.putString("access_token",accessToken)
                             editor.apply()
 

@@ -61,7 +61,7 @@ object RetrofitUtil {
 
             override fun onResponse(call: Call<BaseInfoResponse>, response: Response<BaseInfoResponse>) {
 
-                Log.e("getUserProfile","baseinfo : ${response.toString()}" )
+                Log.e("getUserProfile","baseinfo : $response" )
                 callback(response)
 
             }
