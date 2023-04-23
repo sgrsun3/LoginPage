@@ -63,7 +63,7 @@ class LoginPageActivity : Activity() {
 
                             //SharedPreference存储accessToken和permToken
                             val userProfileInfo = getSharedPreferences("user_profile", MODE_PRIVATE)
-                            val editor = userProfileInfo.edit();
+                            val editor = userProfileInfo.edit()
                             editor.putString("idpuser_id",idpUserId)
                             editor.putString("access_token",accessToken)
                             editor.putString("perm_token",permToken)

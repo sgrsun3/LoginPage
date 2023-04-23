@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.widget.TextView
 
 class UserProfileActivity: Activity() {
@@ -48,6 +49,8 @@ class UserProfileActivity: Activity() {
                 if (response.code() == 401){
 
                     userProfileTextView.text = "Error Code 401, 获取用户信息失败"
+                    Log.e("401","Error Code 401")
+
                     val sharedPreferencesUserProfile = getSharedPreferences("user_profile", Context.MODE_PRIVATE)
                     //读取SharedPreferences中的UserId
                     val userName = sharedPreferencesUserProfile.getString("idpuser_id", "")
@@ -59,10 +62,26 @@ class UserProfileActivity: Activity() {
 
                         if (response.isSuccessful) {
 
-                            val accessToken = response.body()?.data?.accessToken
+                            val newAccessToken = response.body()?.data?.accessToken
                             val editor = sharedPreferencesUserProfile.edit()
-                            editor.putString("access_token",accessToken)
+                            editor.putString("access_token",newAccessToken)
                             editor.apply()
+
+                            // 使用新的accessToken重新请求LoginRequest并更新SharedPreferences
+                            val loginRequest = LoginRequest("$userName", "$newAccessToken")
+
+                            retrofitUnit.login(loginRequest) { response ->
+
+                                if (response.isSuccessful) {
+
+                                    val newPermToken = response.body()?.data?.auth?.refreshToken
+                                    val editor = sharedPreferencesUserProfile.edit()
+                                    editor.putString("perm_token", newPermToken)
+                                    editor.apply()
+
+                                }
+
+                            }
 
                         }
 

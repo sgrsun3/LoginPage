@@ -28,6 +28,7 @@ object RetrofitUtil {
         call.enqueue(object:Callback<LoginResponse> {
 
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+
                 callback(response)
 
             }
